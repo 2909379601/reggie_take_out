@@ -7,6 +7,13 @@ import lombok.Data;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+/**
+ * @Description: Employee
+ * @Date: 2022/4/19
+ * @Time: 8:57
+ * @Author: Erruihhh
+ * @Return:
+ */
 @Data
 public class Employee implements Serializable {
 
@@ -28,8 +35,10 @@ public class Employee implements Serializable {
 
     private Integer status;
 
+    @TableField(fill = FieldFill.INSERT)
     private LocalDateTime createTime;
 
+    @TableField(fill = FieldFill.INSERT_UPDATE)
     private LocalDateTime updateTime;
 
     @TableField(fill = FieldFill.INSERT)

@@ -12,7 +12,6 @@ import org.springframework.util.DigestUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.time.LocalDateTime;
 
 /**
  * @Author: Erruihhh
@@ -84,16 +83,16 @@ public class EmployeeController {
     @PostMapping
     public R<String> save(HttpServletRequest request, @RequestBody Employee employee) {
         log.info("新增员工,员工信息:{}", employee.toString());
-        //设置初始密码123456，使用进行md5加密
-        employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setCreateTime(LocalDateTime.now());
-
-        //获取当前登录用户的id
-        Long empId = (Long) request.getSession().getAttribute("employee");
-        employee.setCreateUser(empId);
-        employee.setUpdateUser(empId);
-        employeeService.save(employee);
+//        //设置初始密码123456，使用进行md5加密
+//        employee.setPassword(DigestUtils.md5DigestAsHex("123456".getBytes()));
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setCreateTime(LocalDateTime.now());
+//
+//        //获取当前登录用户的id
+//        Long empId = (Long) request.getSession().getAttribute("employee");
+//        employee.setCreateUser(empId);
+//        employee.setUpdateUser(empId);
+//        employeeService.save(employee);
         return R.success("新增员工成功");
     }
 
@@ -119,5 +118,34 @@ public class EmployeeController {
         employeeService.page(pageInfo, queryWrapper);
 
         return R.success(pageInfo);
+    }
+
+    /**
+     * @Description: 根据Id修改员工信息·
+     * @Date: 2022/4/17
+     * @Time: 16:24
+     * @Author: Erruihhh
+     * @Return:
+     */
+    @PutMapping
+    public R<String> update(HttpServletRequest request, @RequestBody Employee employee) {
+        log.info(employee.toString());
+        Long empId = (Long) request.getSession().getAttribute("employee");
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(empId);
+//        employeeService.updateById(employee);
+        long id = Thread.currentThread().getId();
+        log.info("线程id为:{}", id);
+        return R.success("员工信息修改成功");
+    }
+
+    @GetMapping("/{id}")
+    public R<Employee> getById(@PathVariable Long id) {
+        log.info("根据id查询员工");
+        Employee employee = employeeService.getById(id);
+        if (employee != null) {
+            return R.success(employee);
+        }
+        return R.error("没有查询到对应员工");
     }
 }
