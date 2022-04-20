@@ -1,6 +1,7 @@
 package com.errui.reggie.filter;
 
 import com.alibaba.fastjson.JSON;
+import com.errui.reggie.common.BaseContext;
 import com.errui.reggie.common.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.AntPathMatcher;
@@ -58,6 +59,9 @@ public class LoginCheckFilter implements Filter {
         if (request.getSession().getAttribute("employee") != null) {
             log.info("用户已登录，用户id为：{}", request.getSession().getAttribute("employee"));
 
+            Long empId = (Long) request.getSession().getAttribute("employee");
+            BaseContext.setCurrentId(empId);
+
             long id = Thread.currentThread().getId();
             log.info("线程id为:{}", id);
 
@@ -73,15 +77,15 @@ public class LoginCheckFilter implements Filter {
     }
 
     /**
-     * 路径匹配，检查本次请求是否需要放行
-     *
-     * @param urls
-     * @param requestURI
-     * @return
+     * @Description: 路径匹配，检查本次请求是否需要放行
+     * @Date: 2022/4/19
+     * @Time: 13:22
+     * @Author: Erruihhh
+     * @Return:
      */
-    public boolean check(String[] urls, String requestURI) {
+    public boolean check(String[] urls, String requestUrl) {
         for (String url : urls) {
-            boolean match = PATH_MATCHER.match(url, requestURI);
+            boolean match = PATH_MATCHER.match(url, requestUrl);
             if (match) {
                 return true;
             }
