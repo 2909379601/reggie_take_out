@@ -1,15 +1,14 @@
 package com.errui.reggie.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.errui.reggie.entity.Category;
+import com.errui.reggie.entity.Setmeal;
 
 /**
  * @Author: Erruihhh
- * @Date: 2022/4/13
- * @Time: 23:00
+ * @Date: 2022/4/21
+ * @Time: 14:39
  * @PROJECT_NAME: reggie_take_out
  * @Description:
  */
-public interface CategoryService extends IService<Category> {
-    void remove(long ids);
+public interface SetmealService extends IService<Setmeal> {
 }

@@ -1,7 +1,7 @@
 package com.errui.reggie.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.errui.reggie.entity.Category;
+import com.errui.reggie.entity.Dish;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -12,5 +12,5 @@ import org.apache.ibatis.annotations.Mapper;
  * @Description:
  */
 @Mapper
-public interface CategoryMapper extends BaseMapper<Category> {
+public interface DishMapper extends BaseMapper<Dish> {
 }

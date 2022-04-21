@@ -40,28 +40,36 @@ public class CategoryController {
      */
     @GetMapping("/page")
     public R<Page> page(int page, int pageSize) {
-
-        /**
-         * 分页构造器
+        /*
+          分页构造器
          */
         Page<Category> pageInfo = new Page<>(page, pageSize);
-
-        /**
-         * 条件构造器
+        /*
+          条件构造器
          */
         LambdaQueryWrapper<Category> queryWrapper = new LambdaQueryWrapper<>();
-
-        /**
-         * 添加排序条件，根据sort进行排序
+        /*
+          添加排序条件，根据sort进行排序
          */
         queryWrapper.orderByAsc(Category::getSort);
-
-        /**
-         * 进行分页查询
+        /*
+          进行分页查询
          */
         categoryService.page(pageInfo, queryWrapper);
-
         return R.success(pageInfo);
     }
 
+    /**
+     * @Description: 根据Id删除分类
+     * @Date: 2022/4/20
+     * @Time: 13:51
+     * @Author: Erruihhh
+     * @Return:
+     */
+    @DeleteMapping
+    public R<String> delete(Long ids) {
+        log.info("删除分类,id为:{}", ids);
+        categoryService.remove(ids);
+        return R.success("分类信息删除成功");
+    }
 }
