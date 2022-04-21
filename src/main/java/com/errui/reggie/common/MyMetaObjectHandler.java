@@ -17,15 +17,14 @@ import java.time.LocalDateTime;
 @Slf4j
 @Component
 public class MyMetaObjectHandler implements MetaObjectHandler {
-
     /**
-     * 插入操作自动填充
+     * 插入操作，自动填充
      *
-     * @param metaObject 元对象
+     * @param metaObject
      */
     @Override
     public void insertFill(MetaObject metaObject) {
-        log.info("公共字段自动填充<insert>...");
+        log.info("公共字段自动填充[insert]...");
         log.info(metaObject.toString());
         metaObject.setValue("createTime", LocalDateTime.now());
         metaObject.setValue("updateTime", LocalDateTime.now());
@@ -34,15 +33,19 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
     }
 
     /**
-     * 更新操作自动填充
+     * 更新操作，自动填充
      *
-     * @param metaObject 元对象
+     * @param metaObject
      */
     @Override
     public void updateFill(MetaObject metaObject) {
-        log.info("公共字段自动填充<update>...");
+        log.info("公共字段自动填充[update]...");
         log.info(metaObject.toString());
-        metaObject.setValue("createUser", BaseContext.getCurrentId());
+
+        long id = Thread.currentThread().getId();
+        log.info("线程id为：{}", id);
+
+        metaObject.setValue("updateTime", LocalDateTime.now());
         metaObject.setValue("updateUser", BaseContext.getCurrentId());
     }
 }
