@@ -20,4 +20,13 @@ public interface DishService extends IService<Dish> {
      * @Return:
      */
     void saveWithFlavor(DishDto dishDto);
+
+    /**
+     * @Description: 根据id查询菜品信息和对应的口味信息
+     * @Author: Erruihhh
+     * @Date: 2022/4/22
+     * @Time: 13:29
+     * @Return:
+     */
+    DishDto getByIdWithFlavor(Long id);
 }

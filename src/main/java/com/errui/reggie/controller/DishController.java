@@ -103,4 +103,19 @@ public class DishController {
 
         return R.success(dishDtoPage);
     }
+
+    /**
+     * @Description: 根据id查询菜品信息和对应的口味信息
+     * @Author: Erruihhh
+     * @Date: 2022/4/22
+     * @Time: 13:25
+     * @Return:
+     */
+    @GetMapping("/{id}")
+    public R<DishDto> get(@PathVariable Long id) {
+
+        DishDto dishDto = dishService.getByIdWithFlavor(id);
+
+        return R.success(dishDto);
+    }
 }
