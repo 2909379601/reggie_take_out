@@ -118,4 +118,20 @@ public class DishController {
 
         return R.success(dishDto);
     }
+
+    /**
+     * @Description: 修改菜品
+     * @Author: Erruihhh
+     * @Date: 2022/4/22
+     * @Time: 13:51
+     * @Return:
+     */
+    @PutMapping
+    public R<String> update(@RequestBody DishDto dishDto) {
+        log.info(dishDto.toString());
+
+        dishService.updateWithFlavor(dishDto);
+
+        return R.success("修改菜品成功");
+    }
 }
