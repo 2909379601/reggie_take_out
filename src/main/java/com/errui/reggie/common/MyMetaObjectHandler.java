@@ -17,8 +17,13 @@ import java.time.LocalDateTime;
 @Slf4j
 @Component
 public class MyMetaObjectHandler implements MetaObjectHandler {
+
     /**
-     * 插入操作，自动填充
+     * @Description: 插入操作，自动填充
+     * @Date: 2022/4/22
+     * @Time: 8:30
+     * @Author: Erruihhh
+     * @Return:
      */
     @Override
     public void insertFill(MetaObject metaObject) {
@@ -30,8 +35,13 @@ public class MyMetaObjectHandler implements MetaObjectHandler {
         metaObject.setValue("updateUser", BaseContext.getCurrentId());
     }
 
+
     /**
-     * 更新操作，自动填充
+     * @Description: 更新操作，自动填充
+     * @Date: 2022/4/22
+     * @Time: 8:30
+     * @Author: Erruihhh
+     * @Return:
      */
     @Override
     public void updateFill(MetaObject metaObject) {

@@ -129,6 +129,13 @@ public class EmployeeController {
         return R.success("员工信息修改成功");
     }
 
+    /**
+     * @Description: 根据id查询员工
+     * @Date: 2022/4/22
+     * @Time: 8:32
+     * @Author: Erruihhh
+     * @Return:
+     */
     @GetMapping("/{id}")
     public R<Employee> getById(@PathVariable Long id) {
         log.info("根据id查询员工");

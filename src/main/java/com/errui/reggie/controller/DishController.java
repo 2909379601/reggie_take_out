@@ -24,6 +24,5 @@ public class DishController {
 
     @Autowired
     private DishFlavorService dishFlavorService;
-
-    //todo p54 05:30
+    
 }

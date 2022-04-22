@@ -20,10 +20,13 @@ import java.util.List;
 @Slf4j
 @Configuration
 public class WebMvcConfig extends WebMvcConfigurationSupport {
+
     /**
-     * 设置静态资源映射
-     *
-     * @param registry
+     * @Description: 设置静态资源映射
+     * @Date: 2022/4/22
+     * @Time: 8:31
+     * @Author: Erruihhh
+     * @Return: registry
      */
     @Override
     protected void addResourceHandlers(ResourceHandlerRegistry registry) {
@@ -37,7 +40,7 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
      * @Date: 2022/4/18
      * @Time: 16:46
      * @Author: Erruihhh
-     * @Return:
+     * @Return: converters
      */
     @Override
     protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
