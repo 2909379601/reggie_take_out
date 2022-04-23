@@ -8,12 +8,10 @@ package com.errui.reggie.common;
  * @Description:
  */
 public class BaseContext {
-    public static ThreadLocal<Long> threadLocal = new ThreadLocal<>();
+    private static ThreadLocal<Long> threadLocal = new ThreadLocal<>();
 
     /**
      * 设置值
-     *
-     * @param id
      */
     public static void setCurrentId(Long id) {
         threadLocal.set(id);
@@ -21,8 +19,6 @@ public class BaseContext {
 
     /**
      * 获取值
-     *
-     * @return threadLocal
      */
     public static Long getCurrentId() {
         return threadLocal.get();
