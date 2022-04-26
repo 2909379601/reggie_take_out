@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -172,5 +173,22 @@ public class DishController {
         }).collect(Collectors.toList());
 
         return R.success(dishDtos);
+    }
+
+    /**
+     * @Description: 删除菜品
+     * @Author: Erruihhh
+     * @Date: 2022/4/26
+     * @Time: 11:03
+     * @Return:
+     */
+    @DeleteMapping
+    @CacheEvict(value = "dishCache", key = "#ids")
+    public R<String> delete(Long ids) {
+        log.info("ids:{}", ids);
+
+        dishService.removeById(ids);
+
+        return R.success("套餐数据删除成功");
     }
 }
